@@ -605,7 +605,7 @@ public class BaseCppTest implements RuntimeTestSupport {
 		synchronized (runtimeBuiltOnce) {
 			if ( !runtimeBuiltOnce ) {
 				try {
-					String command[] = {"clang++", "--version"};
+					String command[] = {"c++", "--version"};
 					String output = runCommand(command, tmpdir, "printing compiler version", false);
 					System.out.println("Compiler version is: "+output);
 				}
@@ -636,7 +636,7 @@ public class BaseCppTest implements RuntimeTestSupport {
 		}
 
 		try {
-			List<String> command2 = new ArrayList<String>(Arrays.asList("clang++", "-std=c++11", "-I", includePath, "-L.", "-lantlr4-runtime", "-o", "a.out"));
+      List<String> command2 = new ArrayList<String>(Arrays.asList("c++", "-pthread", "-std=c++11", "-I", includePath, "-L.", "-lantlr4-runtime", "-o", "a.out"));
 			command2.addAll(allCppFiles(tmpdir));
 			if (runCommand(command2.toArray(new String[0]), tmpdir, "building test binary", true) == null) {
 				return null;
